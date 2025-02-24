@@ -1,0 +1,134 @@
+<div class="container-xl" style="margin-top: 100px;">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4><b>Update Student</b></h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#" routerLink="/RegistrationList" class="btn btn-success back">
+                          <i class="fas fa-arrow-circle-left"></i>&nbsp;Back
+                        </a>
+                      </div>
+                </div>
+            </div>
+            <form #studentForm="ngForm">
+                <div class="table-content">
+                    <!-- First Name -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="firstName" class="p-t-b-10">First Name<span class="requiredStar">*</span></label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="firstName" required maxlength="255"
+                                [(ngModel)]="student.firstName" name="firstName" #firstName="ngModel" />
+                            <div *ngIf="firstName.errors && isSubmitted" class="alert alert-danger validationError">
+                                <div [hidden]="!firstName.errors?.['required']">
+                                    First Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="lastName" class="p-t-b-10">Last Name<span class="requiredStar">*</span></label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lastName" required maxlength="255"
+                                [(ngModel)]="student.lastName" name="lastName" #lastName="ngModel" />
+                            <div *ngIf="lastName.errors && isSubmitted" class="alert alert-danger validationError">
+                                <div [hidden]="!lastName.errors?.['required']">
+                                    Last Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Pro -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="emailPro" class="p-t-b-10">Professional Email<span class="requiredStar">*</span></label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="emailPro" required maxlength="255"
+                                [(ngModel)]="student.emailPro" name="emailPro" #emailPro="ngModel" />
+                            <div *ngIf="emailPro.errors && isSubmitted" class="alert alert-danger validationError">
+                                <div [hidden]="!emailPro.errors?.['required']">
+                                    Professional Email is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Perso -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="emailPerso" class="p-t-b-10">Personal Email</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="emailPerso" maxlength="255"
+                                [(ngModel)]="student.emailPerso" name="emailPerso" />
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="phoneNumber" class="p-t-b-10">Phone Number</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="phoneNumber" maxlength="15"
+                                [(ngModel)]="student.phoneNumber" name="phoneNumber" />
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="address" class="p-t-b-10">Address</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="address" maxlength="255"
+                                [(ngModel)]="student.address" name="address" />
+                        </div>
+                    </div>
+
+                    <!-- Archived -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="archive" class="p-t-b-10">Archived</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="radio" id="archiveTrue" [value]="true" [(ngModel)]="student.archive"
+                                name="archive" />
+                            <label for="archiveTrue">Yes</label>
+
+                            <input type="radio" id="archiveFalse" [value]="false" [(ngModel)]="student.archive"
+                                name="archive" />
+                            <label for="archiveFalse">No</label>
+                        </div>
+                    </div>
+
+                    <!-- Registration Number -->
+                    <div class="form-group p-10 row">
+                        <div class="col-sm-3">
+                            <label for="registrationNu" class="p-t-b-10">Registration Number</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="registrationNu" maxlength="20"
+                                [(ngModel)]="student.registrationNu" name="registrationNu" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="table-footer">
+                    <button class="btn btn-success" (click)="updateStudent()">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

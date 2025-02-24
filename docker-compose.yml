@@ -1,0 +1,84 @@
+version: '3.7'
+services:
+  database:
+    container_name: DATABASE
+    image: "mysql:latest"
+    environment:
+      MYSQL_DATABASE: db_school
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: Passer@1
+      MYSQL_ROOT_PASSWORD: Passer@1
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+  backend:
+    build:
+      context: ./ms_gestschool
+      dockerfile: Dockerfile
+    container_name: BACKEND
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://DATABASE:3306/db_school
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    ports:
+      - "8083:8083"
+    depends_on:
+      - database
+    networks:
+      - backend
+      - frontend
+  app:
+    image: web-front:1.0.1
+    build:
+      context: ./FRONTEND
+      dockerfile: Dockerfile
+    container_name: FRONTEND
+    ports:
+      - "84:80"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch_exam
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    networks:
+      - elk
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: logstash_exam
+    volumes:
+      - ./ms_gestschool/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./ms_gestschool/logs:/usr/share/logstash/logs
+    environment:
+      - "LS_JAVA_OPTS=-Xms512m -Xmx512m"
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    networks:
+      - elk
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: kibana_exam
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+
+networks:
+  backend:
+  frontend:
+  elk:
+    driver: bridge

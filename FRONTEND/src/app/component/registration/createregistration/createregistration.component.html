@@ -1,0 +1,125 @@
+<br><br><br>
+<div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>New Registration</b></h4>
+            </div>
+            <!-- <div class="col-sm-6">
+              <a href="#" routerLink="/Home" class="btn btn-success back">
+                <i class="fas fa-arrow-circle-left"></i>&nbsp;Back
+              </a>
+            </div> -->
+          </div>
+        </div>
+        <form #productForm="ngForm">
+          <div class="table-content">
+            <!-- Name Field -->
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">Name<span class="requiredStar">*</span></label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                  maxlength="255"
+                  [(ngModel)]="registration.name"
+                  name="name"
+                  #name="ngModel"
+                />
+                <div *ngIf="name.errors && isSubmitted" class="text-danger">
+                  <small *ngIf="name.errors?.['required']">Name is required</small>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Description Field -->
+            <div class="form-group row">
+              <label for="description" class="col-sm-3 col-form-label">Description<span class="requiredStar">*</span></label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  required
+                  maxlength="255"
+                  [(ngModel)]="registration.description"
+                  name="description"
+                  #description="ngModel"
+                />
+                <div *ngIf="description.errors && isSubmitted" class="text-danger">
+                  <small *ngIf="description.errors?.['required']">Description is required</small>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Archived Field -->
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Archived<span class="requiredStar">*</span></label>
+              <div class="col-sm-9 d-flex align-items-center">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="archiveTrue"
+                    class="form-check-input"
+                    [value]="true"
+                    [(ngModel)]="registration.archive"
+                    name="archive"
+                    checked
+                  />
+                  <label for="archiveTrue" class="form-check-label">True</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="archiveFalse"
+                    class="form-check-input"
+                    [value]="false"
+                    [(ngModel)]="registration.archive"
+                    name="archive"
+                  />
+                  <label for="archiveFalse" class="form-check-label">False</label>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Student Field -->
+            <div class="form-group row">
+              <label for="studentId" class="col-sm-3 col-form-label">Student<span class="requiredStar">*</span></label>
+              <div class="col-sm-9">
+                <select name="studentId" class="form-control" [(ngModel)]="registration.studentId">
+                  <option selected disabled>Choisissez un étudiant</option>
+                  <option *ngFor="let student of studentsList" [value]="student.id">
+                    {{ student.firstName }} {{ student.lastName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+        
+            <!-- Classe Field -->
+            <div class="form-group row">
+              <label for="classeId" class="col-sm-3 col-form-label">Classe<span class="requiredStar">*</span></label>
+              <div class="col-sm-9">
+                <select name="classeId" class="form-control" [(ngModel)]="registration.classeId">
+                  <option selected disabled>Choisissez une classe</option>
+                  <option *ngFor="let classe of classesList" [value]="classe.id">
+                    {{ classe.name }} 
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Submit Button -->
+          <div class="table-footer text-right">
+            <button class="btn btn-success" (click)="addRegistration(registration)">Submit</button> 
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="container-xl" style="margin-top: 100px;">
+  <a href="#" routerLink="/RegistrationList"  style="margin-right: 10px;" class="btn btn-danger back">
+    <i class="fas fa-arrow-circle-left"></i>&nbsp;Back
+  </a>
+  <button class="btn btn-success" (click)="toggleCreateClasse()">
+    <i class='fas fa-plus-circle'></i> 
+    <span *ngIf="!showCreateClasse">ADD</span>
+    <span *ngIf="showCreateClasse">CLOSE</span>
+  </button>
+
+  <div *ngIf="showCreateClasse">
+<app-createclasse></app-createclasse> </div>
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Classes List</b></h4>
+            </div>
+            <!-- <div class="col-sm-6"> -->
+              <!-- <button class="btn btn-success" (click)="AddProduct()"> -->
+                <!-- <i class='fas fa-plus-circle' routerLink="/CourseCreate"></i><span> ADD</span> -->
+              <!-- </button> -->
+            <!-- </div> -->
+          </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered table-content">
+          <thead>
+            <tr class="center-align">
+              <th>NAME</th>
+              <th>DESCRIPTION</th>
+              <th>ARCHIVED</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="listClasses.length === 0">
+              <td colspan="4">Aucune classe trouvée.</td>
+            </tr>
+            <tr *ngFor="let classe of listClasses" class="center-align">
+              <td>{{ classe.name }} </td>
+              <td>{{ classe.description }} </td>
+              <td>{{ classe.archive }} </td> 
+              <td>
+                <a [routerLink]="['/ClasseUpdate/', classe.id]" class="btn"><i class='fas fa-edit edit'></i></a> 
+                <a (click)="deleteClasse(classe.id)" class="btn"><i class='fas fa-trash-alt delete'></i></a>
+                
+              </td> 
+            </tr>
+          </tbody>
+           
+        </table>
+      </div>
+    </div>
+  </div>

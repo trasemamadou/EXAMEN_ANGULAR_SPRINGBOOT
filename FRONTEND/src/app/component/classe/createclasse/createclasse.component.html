@@ -1,0 +1,102 @@
+<br><br><br>
+<div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>New Classe</b></h4>
+            </div>
+            <!-- <div class="col-sm-6">
+              <a href="#" routerLink="/ClasseList" class="btn btn-success back">
+                <i class="fas fa-arrow-circle-left"></i>&nbsp;Back
+              </a>
+            </div> -->
+          </div>
+        </div>
+        <form #productForm="ngForm">
+          <div class="table-content">
+            <!-- Name Field -->
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="name" class="p-t-b-10">Name<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                  maxlength="255"
+                  [(ngModel)]="classe.name"
+                  name="name"
+                  #name="ngModel"
+                />
+                <div *ngIf="name.errors && isSubmitted" class="alert alert-danger validationError">
+                  <div [hidden]="!name.errors?.['required']">
+                    Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Description Field -->
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="description" class="p-t-b-10">Description<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  required
+                  maxlength="255"
+                  [(ngModel)]="classe.description"
+                  name="description"
+                  #description="ngModel"
+                />
+                <div *ngIf="description.errors && isSubmitted" class="alert alert-danger validationError">
+                  <div [hidden]="!description.errors?.['required']">
+                    Description is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Price Field -->
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="archive" class="p-t-b-10">Price<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <!-- Bouton radio pour true -->
+                <input
+                  type="radio"
+                  id="priceTrue"
+                  [value]="true"
+                  [(ngModel)]="classe.archive"
+                  name="archive"
+                  checked
+                />
+                <label for="priceTrue">True</label>
+            
+                <!-- Bouton radio pour false -->
+                <input
+                  type="radio"
+                  id="priceFalse"
+                  [value]="false"
+                  [(ngModel)]="classe.archive"
+                  name="archive"
+                 
+                />
+                <label for="priceFalse">False</label>
+              </div>
+            </div>
+          </div>
+          <div class="table-footer">
+             <button class="btn btn-success" (click)="addClasse(classe)">Submit</button> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

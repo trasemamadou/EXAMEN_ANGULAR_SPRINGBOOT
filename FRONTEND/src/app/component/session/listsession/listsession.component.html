@@ -1,0 +1,57 @@
+
+<div class="container-xl" style="margin-top: 100px;">
+  <a href="#" routerLink="/Home"  style="margin-right: 10px;" class="btn btn-danger back">
+    <i class="fas fa-arrow-circle-left"></i>&nbsp;Back
+  </a>
+  <button class="btn btn-success" (click)="toggleCreateSession()">
+    <i class='fas fa-plus-circle'></i> 
+    <span *ngIf="!showCreateSession">ADD</span>
+    <span *ngIf="showCreateSession">CLOSE</span>
+  </button>
+  <a routerLink="/CourseList" style="margin-left: 10px;margin-right: 10px;" class="btn btn-success back">ADD Course</a>
+  <div *ngIf="showCreateSession">
+    <app-createsession></app-createsession>
+  </div>
+
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Sessions List</b></h4>
+            </div> 
+          </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered table-content">
+          <thead>
+            <tr class="center-align">
+              <th>NAME</th>
+              <th>DESCRIPTION</th>
+              <th>STARTING DATE</th>
+              <th>EDING DATE</th>
+              <th>ARCHIVED</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let session of listSessions" class="center-align">
+              <td>{{ session.name }} </td>
+              <td>{{ session.description }} </td>
+              <td>{{session.beginDate}}</td>
+              <td>{{session.endDate || "Non Assigné"}}</td>
+              <td>{{ session.archive }} </td>  
+          
+              <td> 
+                <a href="#" [routerLink]="['/SessionUpdate/', session.id]" class="btn"><i class="fa fa-edit edit"></i></a> 
+                <a (click)="deleteSession(session.id)" class="btn">
+                  <i class="fas fa-trash-alt delete"></i>
+              </a> 
+              </td> 
+            </tr>
+            <tr> 
+            </tr>
+          </tbody> 
+        </table>
+      </div>
+    </div>
+  </div>

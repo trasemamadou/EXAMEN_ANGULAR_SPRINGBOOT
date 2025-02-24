@@ -1,0 +1,32 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: ms_gestschool
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    ######### SANS  DOCKER #######################""
+    url: jdbc:mysql://localhost:3306/db_school?useSSL=false&serverTimezone=UTC
+    username: root
+    password:
+    ################### AVEC DOCKER#################
+    #url: jdbc:mysql://DATABASE:3306/db_school?useSSL=false&serverTimezone=UTC
+    #username: appuser
+    #password: Passer@1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+  file:
+    name: logs/logs.log
