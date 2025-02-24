@@ -82,3 +82,6 @@ http://localhost:8083/api/registrations
 ![img3](img3.jpg)
 ![img4](img4².jpg)
 ![img5](img5.jpg) 
+![img6](img5.jpg) 
+![img7](img5.jpg) 
+![img8](img5.jpg) 
